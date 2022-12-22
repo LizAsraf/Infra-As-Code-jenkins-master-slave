@@ -1,3 +1,3 @@
 #!/bin/sh
 workDir="/home/jenkins/agent"
-"docker start jenkins"
+docker start jenkins

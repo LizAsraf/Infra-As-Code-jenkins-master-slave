@@ -65,9 +65,34 @@ resource "aws_eip" "slave_ip" {
   )     
 }
 
-/* resource "null_resource" "jenkins_server" {
+resource "null_resource" "jenkins_server1" {
   provisioner "local-exec" {
-    command = "${path.module}/jenkins.sh"
+    interpreter = ["/bin/bash" ,"-c"]
+    command = "scp -o StrictHostKeyChecking=no -i /home/liz/Downloads/lizasraf.pem modules/compute/jenkins2.sh ec2-user@${aws_eip.master_ip[0].public_ip}:jenkins.sh"
   }
   depends_on = [aws_eip.master_ip,aws_eip.slave_ip ]
-} */
+}
+
+resource "null_resource" "jenkins_server2" {
+  provisioner "local-exec" {
+    interpreter = ["/bin/bash" ,"-c"]
+    command = "scp -o StrictHostKeyChecking=no -i /home/liz/Downloads/lizasraf.pem modules/compute/jenkins.sh ec2-user@${aws_eip.slave_ip[0].public_ip}:jenkins.sh"
+  }
+  depends_on = [aws_eip.master_ip,aws_eip.slave_ip ]
+}
+
+resource "null_resource" "jenkins_server3" {
+  provisioner "local-exec" {
+    interpreter = ["/bin/bash" ,"-c"]
+    command = "ssh -o StrictHostKeyChecking=no -i /home/liz/Downloads/lizasraf.pem ec2-user@${aws_eip.master_ip[0].public_ip} ./jenkins.sh"
+  }
+  depends_on = [ aws_volume_attachment.ebs_att_master ]
+}
+
+resource "null_resource" "jenkins_server4" {
+  provisioner "local-exec" {
+    interpreter = ["/bin/bash" ,"-c"]
+    command = "ssh -o StrictHostKeyChecking=no -i /home/liz/Downloads/lizasraf.pem ec2-user@${aws_eip.slave_ip[0].public_ip} ./jenkins.sh"
+  }
+  depends_on = [ aws_volume_attachment.ebs_att_slave ]
+}
