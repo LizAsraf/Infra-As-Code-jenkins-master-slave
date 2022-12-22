@@ -7,7 +7,7 @@ resource "aws_instance" "slave" {
   subnet_id      = element(var.subnet, count.index)
   key_name = var.keyname
   security_groups =  [var.security_groups]
-  user_data = file("jenkins.sh")
+  user_data = file("${path.module}/jenkins.sh")
   user_data_replace_on_change = "true"  
   tags = merge(
     var.tags,
@@ -27,7 +27,7 @@ resource "aws_instance" "master" {
   iam_instance_profile = var.aws_iam_instance_profile
   subnet_id      = element(var.subnet, count.index)
   key_name = var.keyname
-  user_data = file("jenkins2.sh")
+  user_data = file("${path.module}/jenkins2.sh")
   user_data_replace_on_change = "true"  
   security_groups =  [var.security_groups]
   tags = merge(
