@@ -56,3 +56,6 @@ variable "public_subnets_per_vpc" {
   description = "public subnets per vpc"
   type        = number
 }
+/* variable "privet-key" {
+  type        = string
+} */

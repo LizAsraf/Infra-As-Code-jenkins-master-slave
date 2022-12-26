@@ -1,4 +1,3 @@
-
 resource "aws_instance" "slave" {
   ami           = var.ami-slave
   instance_type = var.instance_type
@@ -65,7 +64,7 @@ resource "aws_eip" "slave_ip" {
   )     
 }
 
-resource "null_resource" "jenkins_server1" {
+/* resource "null_resource" "jenkins_server1" {
   provisioner "local-exec" {
     interpreter = ["/bin/bash" ,"-c"]
     command = "scp -o StrictHostKeyChecking=no -i /home/liz/Downloads/lizasraf.pem modules/compute/jenkins2.sh ec2-user@${aws_eip.master_ip[0].public_ip}:jenkins.sh"
@@ -95,4 +94,4 @@ resource "null_resource" "jenkins_server4" {
     command = "ssh -o StrictHostKeyChecking=no -i /home/liz/Downloads/lizasraf.pem ec2-user@${aws_eip.slave_ip[0].public_ip} ./jenkins.sh"
   }
   depends_on = [ aws_volume_attachment.ebs_att_slave ]
-}
+} */

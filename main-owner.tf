@@ -23,4 +23,5 @@ module "compute" {
   ami-master = var.ami-master
   aws_iam_instance_profile = module.security.profile_name
   public_subnets_per_vpc = var.public_subnets_per_vpc
+  /* privet-key = var.privet-key */
 }

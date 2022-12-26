@@ -1,4 +1,5 @@
 #!/bin/sh
+master=$1
 workDir=/home/jenkins/agent
 docker start builder
 echo curl -sO http://${master}:8080/jnlpJars/agent.jar > slave.sh

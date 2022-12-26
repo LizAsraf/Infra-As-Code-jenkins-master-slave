@@ -51,3 +51,7 @@ variable "enviroment" {
 variable "region" {
   type        = string
 }
+/* 
+variable "privet-key" {
+  type        = string
+} */
