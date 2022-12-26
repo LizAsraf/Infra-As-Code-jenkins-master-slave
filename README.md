@@ -16,6 +16,8 @@ terraform plan
 terraform apply
 ```
 The IaC includes the Jenkins Master and Slave containers to run automatically after the terraform apply executed
+after Infrastructure is up need to move to the app and make the steps as describe there
+
 
 ## 🔗Hello Flask Repo
 [![portfolio](https://img.shields.io/badge/hello-flask-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://github.com/LizAsraf/hello-flask.git) 
